@@ -1,6 +1,6 @@
-import { now } from 'lodash'
+import { now } from '@/util/fn'
 
-import { request } from '../util/fetch'
+import { request } from '@/util/fetch'
 import type { Account } from '@/types'
 
 /**

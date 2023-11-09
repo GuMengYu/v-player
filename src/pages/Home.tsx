@@ -23,6 +23,7 @@ import {
   useQueryPersonalizedPlaylists, useQueryPersonalizedRadarPlaylists,
 } from '@/hooks/query/home'
 import { useMyPlaylist } from '@/hooks/usePlaylist'
+import {sizeOfImage} from "@/util/fn";
 
 function ShortCuts() {
   const theme = useTheme()
@@ -34,7 +35,7 @@ function ShortCuts() {
     if (favList) {
       return {
         data: {
-          picUrl: favList.coverImgUrl,
+          picUrl: sizeOfImage(favList.coverImgUrl, 256),
           title: t`main.discover.you_liked`,
           id: favList.id,
         },
@@ -52,7 +53,7 @@ function ShortCuts() {
         type: 'playlist',
         data: {
           id: personalRadarPlaylist.playlist.id,
-          picUrl: personalRadarPlaylist.playlist.coverImgUrl,
+          picUrl: sizeOfImage(personalRadarPlaylist.playlist.coverImgUrl, 256),
           title: t`main.discover.radar`,
         },
         decoration: {

@@ -10,7 +10,7 @@ import {
 import { memo, useCallback, useEffect, useState } from 'react'
 
 import { Link, useNavigate } from 'react-router-dom'
-import { sampleSize } from 'lodash'
+import sampleSize from 'lodash/sampleSize'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import AlbumIcon from '@mui/icons-material/Album'
 import HistoryIcon from '@mui/icons-material/History'

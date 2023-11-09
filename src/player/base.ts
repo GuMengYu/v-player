@@ -1,6 +1,6 @@
 import { Howl, Howler } from 'howler'
 
-import { cloneDeep } from 'lodash'
+import cloneDeep from 'lodash/cloneDeep'
 import { enqueueSnackbar } from 'notistack'
 import { end, start } from '@/api/music'
 import type { Program, Track, TrackFrom, listType } from '@/types'

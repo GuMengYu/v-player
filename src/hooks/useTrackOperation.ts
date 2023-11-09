@@ -1,6 +1,6 @@
 import { useSnackbar } from 'notistack'
 import { useCallback, useMemo } from 'react'
-import { isEmpty } from 'lodash'
+import isEmpty from 'lodash/isEmpty'
 import { useTranslation } from 'react-i18next'
 import { opPlaylist } from '@/api/music'
 import type { Playlist } from '@/types'

@@ -1,11 +1,10 @@
-import { isArray } from 'lodash'
 import { Link as RouterLink } from 'react-router-dom'
 import type { Artist } from '@/types'
 
 export default function ArtistLink({ artist }: { artist: Artist[] | Artist }) {
   let artists: Artist[] = []
   if (artist) {
-    if (isArray(artist))
+    if (Array.isArray(artist))
       artists = artist
     else
       artists = [artist]

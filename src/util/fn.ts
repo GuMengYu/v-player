@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import { inRange } from 'lodash'
+import inRange from 'lodash/inRange'
 
 /**
  * 休眠
@@ -327,4 +327,9 @@ export function formatFrequency(frequency: number) {
 
   // 返回格式化后的字符串
   return `${formattedFrequency} kHz`
+}
+
+
+export function now() {
+  return +new Date()
 }

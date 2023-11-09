@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react'
-import { throttle } from 'lodash'
+import throttle from 'lodash/throttle'
 import { getOpacity } from '@/App'
 
 export default function useVirtualListScroll() {

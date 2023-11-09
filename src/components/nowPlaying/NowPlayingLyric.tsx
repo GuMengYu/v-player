@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
-import { findIndex, sortBy } from 'lodash'
+import findIndex from 'lodash/findIndex'
+import sortBy from 'lodash/sortBy'
+
 import { useWindowSize } from 'react-use'
 import { Lyric, useTrackLyric } from '@/hooks/useTrackOperation'
 import { usePlayerStore } from '@/store/player'

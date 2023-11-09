@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { now } from 'lodash'
+import { now } from '@/util/fn'
 
 import type { Track } from '@/types'
 import { request } from '@/util/fetch'

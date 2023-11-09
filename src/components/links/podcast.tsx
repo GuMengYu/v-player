@@ -1,4 +1,3 @@
-import { isArray } from 'lodash'
 import { Link as RouterLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import type { Podcast } from '@/types'
@@ -6,7 +5,7 @@ import type { Podcast } from '@/types'
 export default function PodcastLink({ podcast }: { podcast: Podcast[] | Podcast }) {
   const { t } = useTranslation()
   let podcasts = []
-  if (isArray(podcast))
+  if (Array.isArray(podcast))
     podcasts = podcast
   else
     podcasts = [podcast]

@@ -1,4 +1,3 @@
-import { isArray } from 'lodash'
 import { Link as RouterLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import type { Album } from '@/types'
@@ -6,7 +5,7 @@ import type { Album } from '@/types'
 export default function AlbumLink({ album }: { album: Album[] | Album }) {
   const { t } = useTranslation()
   let albums = []
-  if (isArray(album))
+  if (Array.isArray(album))
     albums = album
   else
     albums = [album]

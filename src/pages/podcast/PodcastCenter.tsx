@@ -1,7 +1,8 @@
 import Box from '@mui/material/Box'
 import { useQuery } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
-import { random } from 'lodash'
+import random from 'lodash/random'
+
 import { useTranslation } from 'react-i18next'
 import PageTransition from '@/components/PageTransition'
 import { podcastCats, recommendCatAndPodcast, recommendPodcast } from '@/api/podcast'

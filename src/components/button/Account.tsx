@@ -4,13 +4,14 @@ import FaceIcon from '@mui/icons-material/Face'
 import { alpha } from '@mui/material/styles'
 import { useUserStore } from '@/store/user'
 import { useAppStore } from '@/store/app'
+import {sizeOfImage} from "@/util/fn";
 
 export default function Account() {
   const { account } = useUserStore()
   const { toggleLogin, toggleQuick } = useAppStore()
   const theme = useTheme()
   const avatarUrl = useMemo(() => {
-    return account?.profile.avatarUrl
+    return sizeOfImage(account?.profile.avatarUrl, 256)
   }, [account])
   return (
     <>

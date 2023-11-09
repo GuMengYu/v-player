@@ -1,4 +1,4 @@
-import { now } from 'lodash'
+import { now } from '@/util/fn'
 
 import type { Podcast, Program } from '@/types'
 import { request } from '@/util/fetch'

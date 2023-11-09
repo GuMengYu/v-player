@@ -1,4 +1,4 @@
-import { now } from 'lodash'
+import { now } from '@/util/fn'
 
 import type { Playlist, Track } from '@/types'
 import { request, requestPost } from '@/util/fetch'

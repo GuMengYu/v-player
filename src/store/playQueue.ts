@@ -1,4 +1,7 @@
-import { pick, random, shuffle } from 'lodash'
+import  pick  from 'lodash/pick'
+import  random  from 'lodash/random'
+import  shuffle  from 'lodash/shuffle'
+
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 import type { Program, SimpleTrack, Track, TrackFrom, listType } from '@/types'

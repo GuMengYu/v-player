@@ -1,4 +1,4 @@
-import { uniqBy } from 'lodash'
+import uniqBy  from 'lodash/uniqBy'
 import { useEffect, useState } from 'react'
 
 export default function useMediaDevices() {

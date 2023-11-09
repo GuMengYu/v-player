@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
-import { entries, groupBy, random } from 'lodash'
+import random from 'lodash/random'
+import groupBy from 'lodash/groupBy'
+
 import { useNavigate } from 'react-router-dom'
 import PageTransition from '@/components/PageTransition'
 import { getCatList } from '@/api/playlist'
@@ -20,7 +22,7 @@ export default function MoodsGenresPage() {
     })
     const group = groupBy(items, 'category') ?? {}
     let cats = []
-    cats = entries(group).map(([k, v]) => ({
+    cats = Object.entries(group).map(([k, v]) => ({
       title: categories[k],
       tags: v,
     }))

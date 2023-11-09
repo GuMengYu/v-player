@@ -1,5 +1,4 @@
-import { isArray, now } from 'lodash'
-
+import { now } from '@/util/fn'
 import { getAlbum } from './album'
 import { getArtist } from './artist'
 import { getPlaylistDetail, getPlaylistTrackAll } from './playlist'
@@ -237,7 +236,7 @@ export function opPlaylist(op: 'add' | 'del' = 'add', pid: number, trackId: numb
     params: {
       op,
       pid,
-      tracks: isArray(trackId) ? trackId.join(',') : trackId,
+      tracks: Array.isArray(trackId) ? trackId.join(',') : trackId,
       timestamp: now(),
     },
   })
