@@ -3,7 +3,6 @@ import { Typography } from '@mui/material'
 import { motion } from 'framer-motion'
 import { useTheme } from '@mui/material/styles'
 import { useParams } from 'react-router-dom'
-import { useSearchParam } from 'react-use'
 import Box from '@mui/material/Box'
 import PageTransition from '@/components/PageTransition'
 import { personalizedPlaylist } from '@/api/personalized'
@@ -12,11 +11,12 @@ import type { Playlist } from '@/types'
 import Col from '@/components/Col'
 import GridRow from '@/components/GridRow'
 import Cover from '@/components/cover/Cover'
+import useSearchParams from '@/hooks/useSearchParams'
 
 export default function MoodsGenresDetail() {
   const theme = useTheme()
   const params = useParams()
-  const color = useSearchParam('color')
+  const { searchParams } = useSearchParams()
   const { data, isLoading } = useQuery(['moodsgenres', 'detail', params.type], async () => {
     let playlists: Playlist[] = []
     if (params.type === '推荐') {
@@ -54,7 +54,7 @@ export default function MoodsGenresDetail() {
       <div className="flex flex-col">
         <div className="flex justify-between -ml-2 -mr-4 relative" style={{ height: '217px' }}>
           <Box className='h-full w-full absolute' sx={{
-            backgroundColor: `${color}`,
+            backgroundColor: `${searchParams.get('color')}`,
             backgroundImage: `linear-gradient(90deg, ${theme.palette.surface.main} 0%, rgb(0 0 0 / 0%) 50%, ${theme.palette.surface.main}b3 100%), linear-gradient(360deg, ${theme.palette.surface.main} 0%, rgb(0 0 0 / 0%) 100%)`,
           }}></Box>
 

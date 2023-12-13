@@ -1,6 +1,5 @@
 import { useTheme } from '@mui/material/styles'
 import { Card, Typography } from '@mui/material'
-import { useSearchParam } from 'react-use'
 import { useTranslation } from 'react-i18next'
 import { useSearch } from '@/hooks/query/search'
 import PageTransition from '@/components/PageTransition'
@@ -12,10 +11,13 @@ import GridRow from '@/components/GridRow'
 import VideoCover from '@/components/cover/VideoCover'
 import { GridType } from '@/hooks/useResponsiveGrid'
 import SearchSkeleton from '@/components/skeleton/SearchSkeleton'
+import useSearchParams from '@/hooks/useSearchParams'
 
 export default function Search() {
   const { t } = useTranslation()
-  const searchKeyword = useSearchParam('keyword')
+  const { searchParams } = useSearchParams()
+  console.log(searchParams)
+  const searchKeyword = searchParams.get('keyword')
   const { data, isLoading } = useSearch(searchKeyword)
   const theme = useTheme()
   return <PageTransition>
