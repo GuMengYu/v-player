@@ -28,6 +28,9 @@ export interface SimpleTrack {
   id: number
   name: string
   source: TrackSource
+  al: Track['al']
+  ar: Track['ar']
+  radio: Track['radio']
 }
 
 interface Quality {

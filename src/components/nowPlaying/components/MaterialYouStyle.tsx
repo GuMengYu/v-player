@@ -1,6 +1,6 @@
 import { Box, IconButton, Typography, useTheme } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import { forwardRef, useCallback, useMemo } from 'react'
+import { forwardRef, useCallback, useEffect, useMemo, useState } from 'react'
 import { alpha } from '@mui/material/styles'
 import { KeyboardArrowDown } from '@mui/icons-material'
 import { useAppStore } from '@/store/app'
@@ -13,13 +13,22 @@ import NowPlayingLyric from '@/components/nowPlaying/NowPlayingLyric'
 import TrackMore from '@/components/nowPlaying/TrackMore'
 import MdControl from '@/components/nowPlaying/components/MdControl'
 import useResponsiveSize from '@/components/nowPlaying/components/useResponsiveSize'
+import { SimpleTrack } from '@/types'
+import { playQueueStore } from '@/store/playQueue'
+import { usePlayer } from '@/hooks/usePlayer'
 
 const MaterialYouStyle = forwardRef((_, ref)=> {
   const theme = useTheme()
   const { responsiveSize } = useResponsiveSize()
   const { t } = useTranslation()
   const { toggleNowPlaying } = useAppStore()
+  const { getNextTrack, getPrevTrack } = playQueueStore()
+
   const { track, playing, currentTime } = usePlayerStore()
+  const { player } = usePlayer()
+  const [nextTrack, setNextTrack] = useState<SimpleTrack>()
+  const [prevTrack, setPrevTrack] = useState<SimpleTrack>()
+
   const coverUrl = useMemo(() => {
     return track?.coverUrl ?? track?.al?.picUrl ?? ''
   }, [track])
@@ -35,6 +44,11 @@ const MaterialYouStyle = forwardRef((_, ref)=> {
       return 'rgba(0 0 0, 0)'
   }, [theme])
 
+  useEffect(() => {
+    setNextTrack(getNextTrack())
+    setPrevTrack(getPrevTrack())
+  }, [track])
+
   return <Box ref={ref} sx={{
     height: '100vh',
     outline: 'none',
@@ -47,10 +61,28 @@ const MaterialYouStyle = forwardRef((_, ref)=> {
       color: theme.palette.onPrimaryContainer.main,
     }}
     >
-      <Box className='overflow-hidden rounded-full drag-area' sx={{ height: '45vh', width: '100%' }}>
-        <Image src={coverUrl} fit={'cover'}
-               gradient={`linear-gradient(90deg, ${maskColor} 0%, rgb(0 0 0 / 0%) 50%, ${maskColor} 100%), linear-gradient(360deg, ${maskColor} 0%, rgb(0 0 0 / 0%) 50%, ${maskColor} 100%)`}
-                />
+      <Box className='drag-area gap-x-2 flex' sx={{ height: '50vh', width: '100%' }}>
+        {
+          prevTrack && <Box className='rounded-full overflow-hidden cursor-pointer no-drag-area ' onClick={() => player.prev()}>
+            <Image src={prevTrack.al.picUrl} fit={'cover'}
+                   gradient={`linear-gradient(90deg, ${maskColor} 0%, ${maskColor} 100%)`}
+            />
+          </Box>
+        }
+
+        <Box className='rounded-3xl overflow-hidden ' sx={{ minWidth: '50vh', maxWidth: '50vh' }}>
+          <Image src={coverUrl} fit={'cover'}
+                 gradient={`linear-gradient(90deg, ${maskColor} 0%, rgb(0 0 0 / 0%) 50%, ${maskColor} 100%), linear-gradient(360deg, ${maskColor} 0%, rgb(0 0 0 / 0%) 50%, ${maskColor} 100%)`}
+          />
+        </Box>
+        {
+          nextTrack &&  <Box className='rounded-full overflow-hidden cursor-pointer no-drag-area' onClick={() => player.next()}>
+            <Image src={nextTrack?.al.picUrl} fit={'cover'}
+                   gradient={`linear-gradient(90deg, ${maskColor} 0%, ${maskColor} 100%)`}
+            />
+          </Box>
+        }
+
       </Box>
       <Box className='flex flex-col gap-8 mb-2 mt-auto' sx={{ width: '70%' }}>
         <div className="flex flex-col justify-center items-center no-drag-area">

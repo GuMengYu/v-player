@@ -41,6 +41,8 @@ const Transition = forwardRef((
 export default function NowPlayingPage() {
 
   const [palette, setPalette] = useState<PaletteOptions>()
+
+
   const { track } = usePlayerStore()
   const { theme: defaultTheme } = useCreateTheme()
 
