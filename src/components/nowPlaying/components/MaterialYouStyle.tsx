@@ -61,7 +61,7 @@ const MaterialYouStyle = forwardRef((_, ref)=> {
       color: theme.palette.onPrimaryContainer.main,
     }}
     >
-      <Box className='drag-area gap-x-2 flex' sx={{ height: '50vh', width: '100%' }}>
+      <Box className='drag-area gap-x-2 flex' sx={{ width: '100%' }}>
         {
           prevTrack && <Box className='rounded-full overflow-hidden cursor-pointer no-drag-area ' onClick={() => player.prev()}>
             <Image src={prevTrack.al.picUrl} fit={'cover'}
@@ -70,7 +70,7 @@ const MaterialYouStyle = forwardRef((_, ref)=> {
           </Box>
         }
 
-        <Box className='rounded-3xl overflow-hidden ' sx={{ minWidth: '50vh', maxWidth: '50vh' }}>
+        <Box className='rounded-3xl overflow-hidden ' sx={{ minWidth: '30vw', maxWidth: '50vh' }}>
           <Image src={coverUrl} fit={'cover'}
                  gradient={`linear-gradient(90deg, ${maskColor} 0%, rgb(0 0 0 / 0%) 50%, ${maskColor} 100%), linear-gradient(360deg, ${maskColor} 0%, rgb(0 0 0 / 0%) 50%, ${maskColor} 100%)`}
           />
