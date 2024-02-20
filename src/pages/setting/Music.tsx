@@ -4,12 +4,11 @@ import { Typography } from '@mui/material'
 import Col from '@/components/Col'
 import { QUALITY_LEVEL, useSettingStore } from '@/store/setting'
 import SelectMenu from '@/components/SelectMenu'
-import Switch from '@/components/Switch'
 import useMediaDevices from '@/hooks/useMediaDevices'
 import { player } from '@/contexts/player'
 
 export default function MusicSetting() {
-  const { quality, setQuality, dynamicBg, setDynamicBg, setOutputdevice, outputdevice, lyricTrans, setLyricTrans } = useSettingStore()
+  const { quality, setQuality, dynamicBg, setDynamicBg, setOutputdevice, outputdevice } = useSettingStore()
   const { outputDevices } = useMediaDevices()
   const { t } = useTranslation()
 
@@ -82,17 +81,11 @@ export default function MusicSetting() {
     }>
 
     </Col>
-    <Col variant='caption' title='正在播放页动态背景' more={
-      <Switch checked={dynamicBg} onChange={(_, v) => {
-        setDynamicBg(v)
-      }} />
-    }>
-    </Col>
-    <Col variant='caption' title='歌词翻译' more={
-      <Switch checked={lyricTrans} onChange={(_, v) => {
-        setLyricTrans(v)
-      }} />
-    }>
-    </Col>
+    {/*<Col variant='caption' title='正在播放页动态背景' more={*/}
+    {/*  <Switch checked={dynamicBg} onChange={(_, v) => {*/}
+    {/*    setDynamicBg(v)*/}
+    {/*  }} />*/}
+    {/*}>*/}
+    {/*</Col>*/}
   </div>
 }

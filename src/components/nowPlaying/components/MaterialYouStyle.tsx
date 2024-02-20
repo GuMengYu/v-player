@@ -1,30 +1,32 @@
-import { Box, IconButton, Typography, useTheme } from '@mui/material'
+import { Box, IconButton, Tooltip, Typography, useTheme } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { forwardRef, useCallback, useEffect, useMemo, useState } from 'react'
 import { alpha } from '@mui/material/styles'
-import { KeyboardArrowDown } from '@mui/icons-material'
+import { KeyboardArrowDown, RadioRounded } from '@mui/icons-material'
+import AMLL from './AMLL'
 import { useAppStore } from '@/store/app'
 import { usePlayerStore } from '@/store/player'
 import Image from '@/components/Image'
 import ArtistLink from '@/components/links/artist'
 import { formatDuring } from '@/util/fn'
 import NowPlayingSlider from '@/components/nowPlaying/NowPlayingSlider'
-import NowPlayingLyric from '@/components/nowPlaying/NowPlayingLyric'
 import TrackMore from '@/components/nowPlaying/TrackMore'
 import MdControl from '@/components/nowPlaying/components/MdControl'
 import useResponsiveSize from '@/components/nowPlaying/components/useResponsiveSize'
 import { SimpleTrack } from '@/types'
 import { playQueueStore } from '@/store/playQueue'
 import { usePlayer } from '@/hooks/usePlayer'
+import LikeToggle from '@/components/toggle/likeToggle'
+import PulseIcon from '@/components/nowPlaying/components/PulseIcon'
 
-const MaterialYouStyle = forwardRef((_, ref)=> {
+const MaterialYouStyle = forwardRef((_, ref) => {
   const theme = useTheme()
   const { responsiveSize } = useResponsiveSize()
   const { t } = useTranslation()
   const { toggleNowPlaying } = useAppStore()
   const { getNextTrack, getPrevTrack } = playQueueStore()
 
-  const { track, playing, currentTime } = usePlayerStore()
+  const { track, currentTime, isCurrentFm } = usePlayerStore()
   const { player } = usePlayer()
   const [nextTrack, setNextTrack] = useState<SimpleTrack>()
   const [prevTrack, setPrevTrack] = useState<SimpleTrack>()
@@ -76,7 +78,7 @@ const MaterialYouStyle = forwardRef((_, ref)=> {
           />
         </Box>
         {
-          nextTrack &&  <Box className='rounded-full overflow-hidden cursor-pointer no-drag-area' onClick={() => player.next()}>
+          nextTrack && <Box className='rounded-full overflow-hidden cursor-pointer no-drag-area' onClick={() => player.next()}>
             <Image src={nextTrack?.al.picUrl} fit={'cover'}
                    gradient={`linear-gradient(90deg, ${maskColor} 0%, ${maskColor} 100%)`}
             />
@@ -93,12 +95,23 @@ const MaterialYouStyle = forwardRef((_, ref)=> {
         <div className="flex flex-col items-center w-full gap-1 no-drag-area">
           <NowPlayingSlider className="track-slider" />
           <div className='ml-auto flex gap-x-1 items-center'>
-            <Typography variant='subtitle2' className="flex justify-center" >{ formatDuring(currentTime * 1000) }</Typography>
-            <Typography variant='subtitle2' className="flex justify-center" >/</Typography>
-            <Typography variant='subtitle2' className="flex justify-center"  >{ formatDuring(track?.['dt']) }</Typography>
+            <Typography variant='caption' className="flex justify-center" >{ formatDuring(currentTime * 1000) }</Typography>
+            <Typography variant='caption' className="flex justify-center" >/</Typography>
+            <Typography variant='caption' className="flex justify-center" >{ formatDuring(track?.['dt']) }</Typography>
           </div>
-          <div className='ml-auto'>
-            <TrackMore track={track} />
+          <div className='w-full flex justify-between items-center'>
+            {
+              isCurrentFm ? <Tooltip title={'正在收听私人漫游歌曲'} placement='top'>
+                <RadioRounded fontSize='small' sx={{ color: theme.palette.tertiary.main }}/>
+              </Tooltip> : <PulseIcon></PulseIcon> // 占位
+            }
+
+            <div>
+              <LikeToggle id={track.id} />
+              <TrackMore track={track} />
+            </div>
+
+
           </div>
         </div>
       </Box>
@@ -127,7 +140,7 @@ const MaterialYouStyle = forwardRef((_, ref)=> {
         maskImage: `linear-gradient(to bottom, transparent 0px, ${theme.palette.tertiaryContainer.main} 48px)`,
       }}>
         <Box
-          className={'overflow-y-hidden'}
+          className={'overflow-y-hidden relative'}
           sx={{
             color: theme.palette.onSurface.main,
             maxHeight: 'calc(100vh - 112px)',
@@ -136,7 +149,7 @@ const MaterialYouStyle = forwardRef((_, ref)=> {
             maskImage: `linear-gradient(to top, transparent 0px, ${theme.palette.tertiaryContainer.main} 48px)`,
           }}
         >
-          <NowPlayingLyric enable={true} />
+          <AMLL />
         </Box>
       </Box>
     </Box>

@@ -48,7 +48,6 @@ export default function NowPlayingLyric({ enable }: { enable: boolean }) {
         setActiveIdx(activeIdx)
       }
     }
-
   }, [currentTime, defaultOffset])
 
   const onLoaded = useCallback((lyric: Lyric) => {
@@ -69,21 +68,18 @@ export default function NowPlayingLyric({ enable }: { enable: boolean }) {
       lyricsRef.current.list = sortBy(lyricsRef.current.list, (i: Lyric) => i.index)
       console.log('loaded all', lyricsRef.current)
     }
-
   }, [lyrics])
   const delayTime = useCallback((index: number) => {
     if (index - activeIndex <= 0)
       return 0
     else
-      return (index - activeIndex ) * 20
-
+      return (index - activeIndex) * 20
   }, [activeIndex])
 
   const onLyricClick = useCallback((idx: number) => {
     const lyric = lyricsRef.current.list[idx]
     if (lyric)
       player.setSeek(lyric.time)
-
   }, [])
   return <div className="scroll-lyric h-full">
     <ul ref={lyricContainer} className="lyrics">

@@ -69,7 +69,7 @@ export function useTrackLyric() {
       return [{
         sentence: t`main.local.local_music_playing`,
         time: 0,
-        index:0,
+        index: 0,
       }]
     }
     const { tlyric, lrc } = track?.lyric ?? {}
@@ -79,7 +79,7 @@ export function useTrackLyric() {
       return [{
         sentence: t`common.no_lyric`,
         time: 0,
-        index:0,
+        index: 0,
       }]
     }
     if (!isEmpty(trans) && lyricTrans) {

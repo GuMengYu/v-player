@@ -110,6 +110,7 @@ npm run electron:build
 
 [Dopamine](https://github.com/digimezzo/dopamine)
 
+[AMLL](https://github.com/Steve-xmh/applemusic-like-lyrics)
 ### 声明
 
 仅供学习交流使用，禁止个人用于非法商业用途。

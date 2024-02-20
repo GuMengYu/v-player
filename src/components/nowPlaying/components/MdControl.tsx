@@ -3,18 +3,19 @@ import { alpha, useTheme } from '@mui/material/styles'
 import SkipPreviousIcon from '@mui/icons-material/SkipPreviousOutlined'
 import SkipNextIcon from '@mui/icons-material/SkipNextOutlined'
 import { PauseRoundedIcon, PlayRoundedIcon } from '@/components/icons/icons'
-import { player } from '@/contexts/player'
 import { usePlayerStore } from '@/store/player'
 import useResponsiveSize from '@/components/nowPlaying/components/useResponsiveSize'
+import { usePlayerControl } from '@/hooks/usePlayer'
 
 export default function MdControl() {
   const theme = useTheme()
   const {  playing } = usePlayerStore()
+  const { playNext, playPrev, playToggle } = usePlayerControl()
   const { responsiveSize } = useResponsiveSize()
 
   return  <div className='flex justify-evenly items-center no-drag-area w-full'>
     <IconButton
-      onClick={() => player.prev()}
+      onClick={playPrev}
       sx={{
         'height': responsiveSize.button,
         'width': responsiveSize.button,
@@ -31,7 +32,7 @@ export default function MdControl() {
       <SkipPreviousIcon sx={{ fontSize: responsiveSize.icon }} />
     </IconButton>
     <IconButton
-      onClick={() => player.togglePlay()}
+      onClick={playToggle}
       sx={{
         'height': responsiveSize.button * 1.3,
         'width': responsiveSize.button * 1.3,
@@ -50,7 +51,7 @@ export default function MdControl() {
       }
     </IconButton>
     <IconButton
-      onClick={() => player.next()}
+      onClick={playNext}
       sx={{
         'height': responsiveSize.button,
         'width': responsiveSize.button,

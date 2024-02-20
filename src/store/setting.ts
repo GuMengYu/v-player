@@ -41,6 +41,7 @@ interface SettingState {
   quality: QUALITY_LEVEL
   locale: SupportedLanguage
   lyricTrans: boolean
+  lyricBlur: boolean
   dynamicBg: boolean
   exitMode: ExitMode
   border: number
@@ -61,6 +62,8 @@ interface SettingAction {
   setQuality: (quality: QUALITY_LEVEL) => void
   setLocale: (locale: SettingState['locale']) => void
   setLyricTrans: (enable: SettingState['lyricTrans']) => void
+  setLyricBlur: (enable: SettingState['lyricBlur']) => void
+
   setDynamicBg: (enable: SettingState['dynamicBg']) => void
   setYoutubeUnlock: (config: SettingState['youtubeUnlock']) => void
   setUnblockNetEaseMusic: (config: SettingState['unblockNetEaseMusic']) => void
@@ -76,6 +79,7 @@ export const useSettingStore = create(subscribeWithSelector(persist<SettingState
     quality: QUALITY_LEVEL.HIGHER,
     locale: 'zh-CN',
     lyricTrans: false,
+    lyricBlur: true,
     dynamicBg: false,
     exitMode: ExitMode.prompt,
     border: 8,
@@ -94,6 +98,7 @@ export const useSettingStore = create(subscribeWithSelector(persist<SettingState
     setQuality: quality => set({ quality }),
     setLocale: locale => set({ locale }),
     setLyricTrans: lyricTrans => set({ lyricTrans }),
+    setLyricBlur: lyricBlur => set({ lyricBlur }),
     setDynamicBg: dynamicBg => set({ dynamicBg }),
     setYoutubeUnlock: config => set({ youtubeUnlock: config }),
     setUnblockNetEaseMusic: config => set({ unblockNetEaseMusic: config }),

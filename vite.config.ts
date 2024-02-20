@@ -1,6 +1,8 @@
 import { rmSync } from 'node:fs'
 import path from 'node:path'
 import react from '@vitejs/plugin-react'
+import wasm from 'vite-plugin-wasm'
+import topLevelAwait from "vite-plugin-top-level-await";
 
 import { defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite'
 import pkg, { dependencies, devDependencies, name, version } from './package.json'
@@ -15,6 +17,8 @@ export default defineConfig(({ command, mode }) => {
   const env = loadEnv(mode, path.resolve(__dirname, './'))
   const plugins: any = [
     react(),
+    wasm(),
+    topLevelAwait(),
     splitVendorChunkPlugin(),
   ]
   return {
@@ -37,6 +41,9 @@ export default defineConfig(({ command, mode }) => {
     // })(),
     define: {
       __APP_INFO__: JSON.stringify(__APP_INFO__),
+    },
+    build: {
+      target: 'esnext',
     },
     server: {
       host: env.VITE_DEV_SERVER_HOST,

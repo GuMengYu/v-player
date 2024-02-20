@@ -72,6 +72,9 @@ export interface Track {
     lrc: {
       lyric: string
     }
+    yrc: {
+      lyric: string
+    }
   }
   source?: TrackSource
   program?: Program

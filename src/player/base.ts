@@ -304,7 +304,6 @@ export class Player {
     const track = playQueueStore.getState().popTrack()
     if (track)
       this.updatePlayerTrack(track.id, true, true, false, track.source?.from)
-
   }
 
   next() {
@@ -350,7 +349,6 @@ export class Player {
       enqueueSnackbar('往前没有更多可播放的音乐了', { variant: 'info' })
   }
 
-
   private nextTrack() {
     return playQueueStore.getState().popNextTrack()
   }
@@ -386,10 +384,7 @@ export class Player {
           await fetchTrack(track.id, track.source?.from)
 
         this.nextLoaded = true
-
       }
-
-
     }
   }
 
