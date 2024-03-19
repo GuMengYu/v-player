@@ -28,7 +28,7 @@ function Header({
   const { enqueueSnackbar } = useSnackbar()
   const { t } = useTranslation()
   const { playNext } = useAddToPlayQueue()
-  const cover = data.dailySongs[0]?.al.picUrl
+  const cover = data.dailySongs[0]?.al?.picUrl
 
   function handlePlay() {
     toggleLoading(true)

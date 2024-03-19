@@ -66,7 +66,7 @@ const MaterialYouStyle = forwardRef((_, ref) => {
       <Box className='drag-area gap-x-2 flex' sx={{ width: '100%' }}>
         {
           prevTrack && <Box className='rounded-full overflow-hidden cursor-pointer no-drag-area ' onClick={() => player.prev()}>
-            <Image src={prevTrack.al.picUrl} fit={'cover'}
+            <Image src={prevTrack.al?.picUrl} fit={'cover'}
                    gradient={`linear-gradient(90deg, ${maskColor} 0%, ${maskColor} 100%)`}
             />
           </Box>
@@ -79,7 +79,7 @@ const MaterialYouStyle = forwardRef((_, ref) => {
         </Box>
         {
           nextTrack && <Box className='rounded-full overflow-hidden cursor-pointer no-drag-area' onClick={() => player.next()}>
-            <Image src={nextTrack?.al.picUrl} fit={'cover'}
+            <Image src={nextTrack?.al?.picUrl} fit={'cover'}
                    gradient={`linear-gradient(90deg, ${maskColor} 0%, ${maskColor} 100%)`}
             />
           </Box>

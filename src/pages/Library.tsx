@@ -48,7 +48,7 @@ const AlbumCovers = memo(({ tracks }: { tracks: Track[] }) => {
       {tracks?.map(track => (
         <div className='h-24 w-24 cursor-pointer' key={track.id}>
           <Image
-            src={sizeOfImage(track.al.picUrl)}
+            src={sizeOfImage(track.al?.picUrl)}
             className='aspect-square rounded-2xl'
             onClick={() => navigate(`/album/${track.al.id}`)}
           />

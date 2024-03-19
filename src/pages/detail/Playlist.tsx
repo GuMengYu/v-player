@@ -307,7 +307,7 @@ export default function PlaylistPage() {
   const { openContextMenu } = useContextMenu()
   const { getToPlaylistMenuItem, removeFromPlaylist } = useTrackOperation()
   const cover = useMemo(() => {
-    return isMyFavList(+params.id) ? data?.playlist?.tracks[0]?.al.picUrl : data?.playlist.coverImgUrl
+    return isMyFavList(+params.id) ? data?.playlist?.tracks[0]?.al?.picUrl : data?.playlist.coverImgUrl
   }, [data, params])
   const trackFrom = useMemo<TrackFrom>(() => ({ type: 'playlist', id: data?.playlist.id, name: data?.playlist.name }), [data])
 

@@ -57,11 +57,11 @@ export default function NowPlayingPage() {
 
 
   useEffect(() => {
-    if (track?.al.picUrl && showNowPlaying) {
-      let imageUrl = track?.al.picUrl
+    if (track?.al?.picUrl && showNowPlaying) {
+      let imageUrl = track?.al?.picUrl
 
       if (track?.source?.fromType !== 'local')
-        imageUrl = sizeOfImage(track?.al.picUrl)
+        imageUrl = sizeOfImage(track?.al?.picUrl)
 
       const image = new Image()
       image.crossOrigin = 'anonymous'

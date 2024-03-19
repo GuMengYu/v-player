@@ -50,7 +50,7 @@ function NowPlayingBar() {
   const { track, volume, volumeIcon, isProgram } = usePlayerControl()
   const coverUrl = useMemo(() => {
     // 本地音乐返回的封面是bast64 不能加sizeOfImage参数处理
-    return track?.source?.fromType === 'local' ? track?.al.picUrl : sizeOfImage(track?.coverUrl ?? track?.al?.picUrl ?? '')
+    return track?.source?.fromType === 'local' ? track?.al?.picUrl : sizeOfImage(track?.coverUrl ?? track?.al?.picUrl ?? '')
   }, [track])
   const [isHovering, setIsHovering] = useState(false)
   const [cacheVolume, setCacheVolume] = useState(0)
