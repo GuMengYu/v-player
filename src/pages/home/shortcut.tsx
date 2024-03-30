@@ -12,6 +12,8 @@ import LoadingButton from '@/components/button/LoadingButton'
 import { PlayIcon } from '@/components/icons/icons'
 import { useReplacePlayQueue } from '@/hooks/usePlayQueue'
 import { cloudDiskMusicList } from '@/api/cloud'
+import useUser from '@/hooks/useUser'
+import { useAppStore } from '@/store/app'
 
 export default function ShortCut({
   data,
@@ -26,6 +28,8 @@ export default function ShortCut({
   }
   type: 'album' | 'playlist' | 'artist' | 'daily' | 'recent' | 'program' | 'cloud'
 }) {
+  const { logged } = useUser()
+  const { toggleLogin } = useAppStore()
   const [isHovering, setIsHovering] = useState(false)
   const [loading, setLoading] = useState(false)
   const { replaceQueueAndPlay } = useReplacePlayQueue()
@@ -77,6 +81,10 @@ export default function ShortCut({
     }
   }
   function handleJump() {
+    if (!logged) {
+      toggleLogin(true)
+      return
+    }
     if (['album', 'playlist', 'daily', 'cloud'].includes(type)) {
       const to = ({
         playlist: `/playlist/${data.id}`,

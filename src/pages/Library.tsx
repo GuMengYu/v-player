@@ -243,7 +243,7 @@ function FavCard() {
     <div className='flex items-start flex-col'>
       <Typography
         component={Link}
-        to={`/playlist/${favList.id}`}
+        to={`/playlist/${favList?.id}`}
         variant='h5'>
         {account?.profile?.nickname} {t`main.discover.liked`}
       </Typography>
