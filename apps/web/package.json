@@ -1,0 +1,99 @@
+{
+  "name": "music-you",
+  "version": "3.0.0-alpha.1",
+  "private": true,
+  "description": "A NetEaseCloudMusic third-party music player (base on react)",
+  "author": "gumengyu<1415515984yuri@gmail.com>",
+  "engines": {
+    "node": "^14.18.0 || >=16.0.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint:eslint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --fix",
+    "preview": "vite preview",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage"
+  },
+  "dependencies": {
+    "@applemusic-like-lyrics/lyric": "^0.1.1",
+    "@applemusic-like-lyrics/react": "^0.0.15",
+    "@emotion/css": "^11.11.2",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@material/material-color-utilities": "^0.2.7",
+    "@mui/icons-material": "5.14.8",
+    "@mui/material": "5.14.8",
+    "@mui/system": "5.14.8",
+    "@tanstack/react-query": "^4.35.0",
+    "@tanstack/react-query-devtools": "^4.35.0",
+    "axios": "^1.6.0",
+    "dayjs": "^1.11.10",
+    "flubber": "^0.4.2",
+    "framer-motion": "^10.16.4",
+    "howler": "^2.2.3",
+    "i18next": "^23.6.0",
+    "immer": "^10.0.3",
+    "lodash": "^4.17.21",
+    "lottie-web": "^5.12.2",
+    "material-ui-confirm": "^3.0.9",
+    "notistack": "^3.0.1",
+    "overlayscrollbars-react": "^0.5.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^13.3.1",
+    "react-router-dom": "^6.15.0",
+    "react-use": "^17.4.0",
+    "react-use-measure": "^2.1.1",
+    "react-virtuoso": "^4.6.0",
+    "sass": "^1.66.1",
+    "simplex-noise": "^4.0.1",
+    "stackblur-canvas": "^2.6.0",
+    "tailwindcss": "^3.3.3",
+    "use-immer": "^0.9.0",
+    "webfontloader": "^1.6.28",
+    "zustand": "^4.4.1"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.43.0",
+    "@types/howler": "^2.2.8",
+    "@types/jest": "^29.5.5",
+    "@types/md5": "^2.3.2",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "@types/uuid": "^9.0.4",
+    "@types/webfontloader": "^1.6.36",
+    "@typescript-eslint/eslint-plugin": "^6.7.2",
+    "@typescript-eslint/parser": "^6.7.2",
+    "@vitejs/plugin-react": "^4.0.4",
+    "autoprefixer": "^10.4.15",
+    "eslint": "^8.49.0",
+    "eslint-plugin-react": "^7.33.2",
+    "jest": "^29.7.0",
+    "md5": "^2.3.0",
+    "postcss": "^8.4.29",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.9",
+    "vite-plugin-top-level-await": "^1.4.1"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
+}

@@ -21,12 +21,7 @@
     "lint:fix": "eslint . --fix",
     "electron:prebuild": "vite build --mode electron",
     "lint:eslint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --fix",
-    "preview": "vite preview",
-    "pree2e": "vite build --mode=test",
-    "e2e": "playwright test",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:cov": "jest --coverage"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@applemusic-like-lyrics/lyric": "^0.1.1",

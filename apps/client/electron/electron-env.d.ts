@@ -9,3 +9,7 @@ declare namespace NodeJS {
     VITE_PUBLIC: string
   }
 }
+
+declare module 'NeteaseCloudMusicApi' {
+  export function serveNcmApi(options?: { port: number; host: string }): void
+}

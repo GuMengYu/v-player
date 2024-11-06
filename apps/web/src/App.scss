@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+}
+.drag-area {
+  -webkit-app-region: drag;
+}
+.no-drag-area {
+  -webkit-app-region: no-drag;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  @apply hidden;
+}
+
+// 限制文本行数
+@for $i from 1 through 8 {
+  .line-clamp-#{$i} {
+    -webkit-line-clamp: #{$i};
+    line-clamp: #{$i};
+    overflow: hidden !important;
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical !important;
+  }
+}
+
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.lottie-icon path,
+[role="button"]:active .lottie-icon path,
+[role="button"]:focus .lottie-icon path,
+[role="button"]:hover .lottie-icon path,
+a:active .lottie-icon path,
+a:focus .lottie-icon path,
+a:hover .lottie-icon path,
+button:active .lottie-icon path,
+button:focus .lottie-icon path,
+button:hover .lottie-icon path {
+  fill: currentColor;
+}
+.ReactQueryDevtools {
+  position: absolute;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
