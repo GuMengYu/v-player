@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { forwardRef, useCallback, useEffect, useMemo, useState } from 'react'
 import { alpha } from '@mui/material/styles'
 import { KeyboardArrowDown, RadioRounded } from '@mui/icons-material'
-import AMLL from './AMLL'
+// import AMLL from './AMLL'
 import { useAppStore } from '@/store/app'
 import { usePlayerStore } from '@/store/player'
 import Image from '@/components/Image'
@@ -149,7 +149,7 @@ const MaterialYouStyle = forwardRef((_, ref) => {
             maskImage: `linear-gradient(to top, transparent 0px, ${theme.palette.tertiaryContainer.main} 48px)`,
           }}
         >
-          <AMLL />
+          {/* <AMLL /> */}
         </Box>
       </Box>
     </Box>

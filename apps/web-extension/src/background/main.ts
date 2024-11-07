@@ -10,7 +10,7 @@ if (import.meta.hot) {
 }
 
 // remove or turn this off if you don't use side panel
-const USE_SIDE_PANEL = true
+const USE_SIDE_PANEL = false
 
 // to toggle the sidepanel with the action button in chromium:
 if (USE_SIDE_PANEL) {
@@ -48,6 +48,10 @@ browser.tabs.onActivated.addListener(async ({ tabId }) => {
   // eslint-disable-next-line no-console
   console.log('previous tab', tab)
   sendMessage('tab-prev', { title: tab.title }, { context: 'content-script', tabId })
+})
+
+browser.action.onClicked.addListener(() => {
+  browser.runtime.openOptionsPage()
 })
 
 onMessage('get-current-tab', async () => {

@@ -14,8 +14,8 @@ export async function getManifest() {
     version: pkg.version,
     description: pkg.description,
     action: {
-      default_icon: './assets/icon-512.png',
-      default_popup: './dist/popup/index.html',
+      default_icon: './assets/icon@512x512.png',
+      // default_popup: './dist/popup/index.html',
     },
     options_ui: {
       page: './dist/options/index.html',
@@ -66,17 +66,17 @@ export async function getManifest() {
   }
 
   // add sidepanel
-  if (isFirefox) {
-    manifest.sidebar_action = {
-      default_panel: 'dist/sidepanel/index.html',
-    }
-  }
-  else {
-    // the sidebar_action does not work for chromium based
-    (manifest as any).side_panel = {
-      default_path: 'dist/sidepanel/index.html',
-    }
-  }
+  // if (isFirefox) {
+  //   manifest.sidebar_action = {
+  //     default_panel: 'dist/sidepanel/index.html',
+  //   }
+  // }
+  // else {
+  //   // the sidebar_action does not work for chromium based
+  //   (manifest as any).side_panel = {
+  //     default_path: 'dist/sidepanel/index.html',
+  //   }
+  // }
 
   // FIXME: not work in MV3
   if (isDev && false) {

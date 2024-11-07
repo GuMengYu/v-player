@@ -2,12 +2,12 @@ import type { Options } from './yofetch'
 import yofetch from './yofetch'
 
 const service = yofetch.create({
-  baseURL: '/api',
+  baseURL: 'http://127.0.0.1:3001',
   credentials: 'include',
 })
 
 const localService = yofetch.create({
-  baseURL: '/local',
+  baseURL: 'http://127.0.0.1:3000',
 })
 
 export function localRequest<T>(url: string | Options, config?: Options) {

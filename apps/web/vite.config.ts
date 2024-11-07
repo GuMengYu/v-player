@@ -29,6 +29,7 @@ export default defineConfig(({ command, mode }) => {
   ]
 
   return {
+    base: './',
     mode,
     envDir: path.resolve(__dirname, './'),
     root: __dirname,
