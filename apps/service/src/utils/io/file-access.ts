@@ -52,7 +52,7 @@ export class FileAccess {
     return this.combinePath([this.coverArtCacheFullPath(), `${artworkId}.jpg`])
   }
   public coverArtHttpPath(artworkId: string): string {
-    return `http://localhost:${process.env.PORT ?? 3000}/coverArt/${artworkId}.jpg`
+    return `http://localhost:${process.env.PORT ?? 12141}/coverArt/${artworkId}.jpg`
   }
 
   public async getFilesInDirectoryAsync(directoryPath: string, continueOnError?: boolean, errors?: Error[]): Promise<string[]> {

@@ -1,6 +1,6 @@
 function check() {
   // 检测和http:localhost:3000/hello 是否成功来确定与服务器的连接状态
-  return fetch('http://localhost:3000/hello')
+  return fetch('http://localhost:12141')
     .then(res => res.text())
     .then(text => text === 'hello')
     .catch(() => false)

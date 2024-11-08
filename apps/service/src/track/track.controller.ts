@@ -24,7 +24,7 @@ export class TrackController {
   }
 
   @Get('get-track')
-  async getTrack(@Query('trackId') trackId: number) {
+  async getTrack(@Query('id') trackId: number) {
     const track = await this.trackService.getTrackById(trackId)
     const trackModel = new TrackModel(track)
     const albumPath = await this.metadataService.createImageUrlAsync(trackModel)
@@ -33,7 +33,7 @@ export class TrackController {
       id: trackModel.id,
       name: trackModel.fileName,
       dt: trackModel.durationInMilliseconds,
-      url: `http://localhost:${process.env.PORT || 3000}/track/get-url/${trackModel.id}`,
+      url: `http://localhost:${process.env.PORT || 12141}/track/get-url/${trackModel.id}`,
       ar: trackModel.artists?.split(',').map(i => ({
         name: i,
         id: i,
