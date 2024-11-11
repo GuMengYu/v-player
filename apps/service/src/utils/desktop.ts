@@ -37,8 +37,14 @@ export class Desktop {
     return path.join(os.homedir(), 'Music')
   }
 
+
   // 获取应用数据目录
-  public getApplicationDataDirectory(): string {
+
+  public static getApplicationDataDirectory(): string {
     return path.join(os.homedir(), process.platform === 'win32' ? 'AppData\\Roaming\\music-you' : 'music-you')
+  }
+  // 添加方法可以在实例访问上面的静态方法
+  getApplicationDataDirectory() {
+    return Desktop.getApplicationDataDirectory()
   }
 }

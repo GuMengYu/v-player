@@ -157,7 +157,13 @@ function LoginDialog() {
   }))
 
   return (
-    <Md3Dialog onClose={handleClose} open={open}>
+    <Dialog
+    sx={{
+      '& .MuiPaper-root': {
+        borderRadius: 6,
+      }
+    }}
+    onClose={handleClose} open={open}>
       <Card
         sx={{
           minWidth: 340,
@@ -231,7 +237,7 @@ function LoginDialog() {
           <Button onClick={handleClose}>{t`common.cancel`}</Button>
         </CardActions>
       </Card>
-    </Md3Dialog>
+    </Dialog>
   )
 }
 

@@ -1,15 +1,16 @@
-import { Controller, Post, Body } from '@nestjs/common'
+import { Controller, Post, Body, Get, Query } from '@nestjs/common'
 
 import { FolderService } from './folder.service'
+import * as os from 'node:os'
+import * as nodePath from 'node:path'
+import { FolderModel } from './folder-model'
+import { Folder } from './folder.entity'
+import { Desktop } from 'src/utils/desktop'
+import { SubfolderModel } from './subfolder-model'
 
 @Controller('folder')
 export class FolderController {
-  constructor(private readonly folderService: FolderService) {
-  }
-
-  @Post('folder-msg')
-  public hello() {
-    console.log('hello from folder')
+  constructor(private readonly folderService: FolderService, private readonly desktop: Desktop) {
   }
 
   @Post('add-folder')
@@ -17,7 +18,7 @@ export class FolderController {
     await this.folderService.addFolderAsync(path)
   }
 
-  @Post('all-folder')
+  @Get('all-folder')
   public async getAllFolder() {
     try {
       const [folders, count] = await this.folderService.getFolders()
@@ -39,5 +40,22 @@ export class FolderController {
     catch (e) {
 
     }
+  }
+  @Get('get-folders')
+  public async getFolders(@Query('path') path?: string) {
+
+    console.log('get folders', path)
+
+    const systemRoot = nodePath.parse(process.cwd()).root;
+
+    const defaultPath = path ?? os.homedir()
+    const folder = new Folder()
+    folder.folderId = 0;
+    folder.path = systemRoot
+    
+    const rootFolder = new FolderModel(folder)
+    const subfolder = new SubfolderModel(defaultPath, false)
+
+    return this.folderService.getSubfoldersAsync(rootFolder, subfolder)
   }
 }

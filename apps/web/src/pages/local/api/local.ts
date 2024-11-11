@@ -1,5 +1,12 @@
 import { localRequest, localPost } from '@/util/fetch'
 import { LocalArtist } from '../hooks/useQueryArtist';
+
+interface TracksResponse {
+  data: any[], 
+  totalDt: number, 
+  totalSize: number
+}
+
 export async function indexing() {
   return localRequest('base/indexing') as any
 }
@@ -7,7 +14,7 @@ export async function allFolder() {
   return localRequest<{
     folders: []
     count: number
-  }>('base/all-folder');
+  }>('folder/all-folder');
 }
 
 export async function openPath(path: string) {
@@ -16,12 +23,12 @@ export async function openPath(path: string) {
 
 // add folder
 export async function addFolder(path: string) {
-  return localPost('base/add-folder',{ path } )
+  return localPost('folder/add-folder',{ path } )
 }
 
 // remove folder
 export async function removeFolder(folderId: number) {
-  return localPost('base/remove-folder', { folderId } )
+  return localPost('folder/remove-folder', { folderId } )
 }
 
 // open in explorer
@@ -49,23 +56,17 @@ export async function getAllArtists() {
 // get all tracks
 // track/all-tracks
 export async function getAllTracks() {
-  return localRequest<{
-    data: any, totalDt: number, totalSize: number
-  }>('track/all-tracks')
+  return localRequest<TracksResponse>('track/all-tracks')
 }
 
 // track/liked-tracks
 export async function getAllLikedTracks() {
-  return localRequest<{
-    data: any, totalDt: number, totalSize: number
-  }>('track/liked-tracks')
+  return localRequest<TracksResponse>('track/liked-tracks')
 }
 
 // track/get-playlist-tracks
 export async function getPlaylistTracks(id: number) {
-  return localRequest<{
-    data: any, totalDt: number, totalSize: number
-  }>('track/get-playlist-tracks', { params: { id } })
+  return localRequest<TracksResponse>('track/get-playlist-tracks', { params: { id } })
 }
 
 export async function toggleTrackLike(trackId: number, liked: boolean) {
@@ -101,5 +102,9 @@ export async function getLocalTrack(id: number) {
 }
 
 export async function getLocalAlbumTrack(albumKey: string) {
-  return localRequest('track/get-album-tracks', {params: { albumKey }})
+  return localRequest<TracksResponse>('track/get-album-tracks', {params: { albumKey }})
+}
+
+export async function getLocalFolders(path?: string) {
+  return localRequest<[]>('folder/get-folders', path ? { params: { path } } : undefined)
 }

@@ -4,6 +4,7 @@ import { Response } from 'express';
 import { MetadataService } from '../utils/metadata/metadata.service'
 import { TrackService } from './track.service'
 import { TrackModel } from './track-model'
+import { Track } from './track.entity';
 
 @Controller('track')
 export class TrackController {
@@ -16,11 +17,7 @@ export class TrackController {
   @Get('all-tracks')
   async getAllTracks() {
     const tracks = await this.trackService.getAllTracksNormalized()
-    return {
-      data: tracks,
-      totalSize: tracks.reduce((prev, crt) => prev + crt.size, 0),
-      totalDt: tracks.reduce((prev, crt) => prev + crt.dt, 0),
-    }
+    return this.getTracksResponse(tracks)
   }
 
   @Get('get-track')
@@ -49,7 +46,6 @@ export class TrackController {
   }
   @Get('get-url/:trackId')
   async getUrl(@Param('trackId') id: number, @Res() res: Response) {
-    console.log('get track url----', id)
     const track = await this.trackService.getTrackById(id)
     const trackModel = new TrackModel(track)
     return res.sendFile(trackModel.path)
@@ -58,19 +54,13 @@ export class TrackController {
   @Get('get-album-tracks')
   async getAlbumTracks(@Query('albumKey') albumKey: string) {
     const tracks = await this.trackService.getTracksForAlbums(albumKey)
-    return {
-      data: tracks,
-    }
+    return this.getTracksResponse(tracks)
   }
 
   @Get('get-playlist-tracks')
   async getPlaylistTracks(@Query('playlistId') playlistId: number) {
     const tracks = await this.trackService.getTracksForPlaylist(playlistId)
-    return {
-      data: tracks,
-      totalSize: tracks.reduce((prev, crt) => prev + crt.size, 0),
-      totalDt: tracks.reduce((prev, crt) => prev + crt.dt, 0),
-    }
+    return this.getTracksResponse(tracks)
   }
 
   @Post('toggle-track-like')
@@ -82,6 +72,9 @@ export class TrackController {
   @Get('liked-tracks')
   async getLikedTracks() {
     const tracks = await this.trackService.getTracksForLiked()
+    return this.getTracksResponse(tracks)
+  }
+  getTracksResponse(tracks: any[]) {
     return {
       data: tracks,
       totalSize: tracks.reduce((prev, crt) => prev + crt.size, 0),

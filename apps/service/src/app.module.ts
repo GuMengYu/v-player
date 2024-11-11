@@ -20,16 +20,18 @@ import { PlaylistModule } from './playlist/playlist.module'
 import { PlaylistTrack } from './playlistTrack/playlist-track.entity'
 import { PlaylistTrackModule } from './playlistTrack/playlist-track.module'
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { Desktop } from './utils/desktop'
+import { ApplicationPaths } from './utils/io/file-access'
 
 const OrmModule = TypeOrmModule.forRoot({
   type: 'sqlite',
-  database: `musicYouDB.db`,
+  database: `${Desktop.getApplicationDataDirectory()}/${ApplicationPaths.dbFolder}/musicYouDB.db`,
   entities: [Folder, Track, FolderTrack, RemovedTrack, AlbumArtwork, Playlist, PlaylistTrack],
   synchronize: true,
 })
 
 const SSModule = ServeStaticModule.forRoot({
-  rootPath: '/Users/yoda/music-you/MusicCache/CoverArt',  // 替换为封面图像的实际文件夹路径
+  rootPath:`${Desktop.getApplicationDataDirectory()}/${ApplicationPaths.cacheFolder}/${ApplicationPaths.coverArtCacheFolder}`,  // 替换为封面图像的实际文件夹路径
   serveRoot: '/coverArt',         // 设置该路径可通过 /coverArt 访问
 })
 

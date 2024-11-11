@@ -2,12 +2,12 @@ import type { Options } from './yofetch'
 import yofetch from './yofetch'
 
 const service = yofetch.create({
-  baseURL: 'http://127.0.0.1:12140',
+  baseURL: import.meta.env.DEV ? '/nem' : 'http://127.0.0.1:12140',
   credentials: 'include',
 })
 
 const localService = yofetch.create({
-  baseURL: 'http://127.0.0.1:12141',
+  baseURL: import.meta.env.DEV ?'/local' : 'http://127.0.0.1:12141',
 })
 
 export function localRequest<T>(url: string | Options, config?: Options) {

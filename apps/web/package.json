@@ -19,8 +19,9 @@
     "test:cov": "jest --coverage"
   },
   "dependencies": {
-    "@applemusic-like-lyrics/lyric": "^0.1.1",
-    "@applemusic-like-lyrics/react": "^0.0.15",
+    "@applemusic-like-lyrics/core": "0.2.0-alpha.4",
+    "@applemusic-like-lyrics/react": "0.2.0-alpha.4",
+    "@applemusic-like-lyrics/lyric": "0.2.4",
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",

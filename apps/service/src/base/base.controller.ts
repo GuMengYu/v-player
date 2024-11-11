@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common'
+import { Body, Controller, Get, Post } from '@nestjs/common'
 
 import { FileAccess } from '../utils/io/file-access'
 import { IndexingService } from '../utils/indexing/indexing.service'
@@ -10,10 +10,10 @@ export class BaseController {
   @Post('get-files')
   async getFiles(path: string) {
     const res = await this.fileAccess.getFilesInDirectoryAsync(path)
-    console.log(res)
+    return res;
   }
 
-  @Post('indexing')
+  @Get('indexing')
   async indexing() {
     this.indexingService.indexCollectionAlwaysAsync()
   }

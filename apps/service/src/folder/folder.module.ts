@@ -3,9 +3,10 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { Folder } from './folder.entity'
 import { FolderService } from './folder.service'
 import { FolderController } from './folder.controller'
+import { IoModule } from 'src/utils/io/io.module'
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Folder])],
+  imports: [TypeOrmModule.forFeature([Folder]), IoModule],
   providers: [FolderService],
   controllers: [FolderController],
   exports: [FolderService],

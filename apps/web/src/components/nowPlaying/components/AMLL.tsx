@@ -96,25 +96,21 @@ export default function AMLL() {
   return (
     <LyricPlayer
       style={{
-        'position': 'absolute',
-        'top': '0',
-        'left': 12,
-        'width': '100%',
-        'height': '100%',
-        'maxWidth': '100%',
-        'maxHeight': '100%',
-        'contain': 'paint layout',
-        'overflow': 'hidden',
-        'mixBlendMode': 'plus-lighter',
-        '--amll-lyric-view-color': theme.palette.primary.main,
-        '--amll-lyric-player-font-size': '1.75rem',
+        position: "absolute",
+        top: "0",
+        left: "0",
+        width: "100%",
+        height: "100%",
+        maxWidth: "100%",
+        maxHeight: "100%",
+        contain: "paint layout",
+        overflow: "hidden",
+        mixBlendMode: "plus-lighter",
       } as any}
-      enableSpring={true}
       enableBlur={lyricBlur ?? false}
-      enableScale={true}
-      alignAnchor={'center'}
       ref={lyricPlayerRef}
       lyricLines={lyricLines}
+			alignAnchor="center"
       onLyricLineClick={onLyricLineClick}
     />
   )

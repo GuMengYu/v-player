@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { usePlayerStore } from '@/store/player'
 import { usePlayer } from '@/hooks/usePlayer'
 import { useSettingStore } from '@/store/setting'
-
+  
 export default function AMLL() {
   const theme = useTheme()
 

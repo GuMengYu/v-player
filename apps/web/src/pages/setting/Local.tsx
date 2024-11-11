@@ -13,6 +13,7 @@ import { useLocalStore } from '@/store/local'
 import Col from '@/components/Col'
 import PageTransition from '@/components/PageTransition'
 import { addFolder, allFolder, indexing, openPath, removeFolder } from '../local/api/local'
+import FolderSelectDialog from './FolderSelectDialog'
 
 function FolderItem({ folder, onRemove }: { folder: any; onRemove: (id: number) => void }) {
   const [isHovering, setIsHovering] = useState(false)
@@ -34,11 +35,13 @@ function FolderItem({ folder, onRemove }: { folder: any; onRemove: (id: number) 
 }
 export default function Local() {
   const { autoSync, setAutoSync } = useLocalStore()
+  const [folderSelectDialogOpen, setFolderSelectDialogOpen] = useState(false)
   const { t } = useTranslation()
   const { data: foldersRes, refetch } = useQuery(['local', 'folders'], async () => {
     return await allFolder()
   })
   async function handleAdd() {
+    setFolderSelectDialogOpen(true)
     // const openDialogReturnValue = await dialog.showOpenDialog({
     //   title: '选择文件夹',
     //   properties: ['openDirectory'],
@@ -48,6 +51,13 @@ export default function Local() {
     //   await addFolder(path)
     //   await refetch()
     // }
+  }
+  async function handleAddFolder(path: string) {
+     if (path) {
+      await addFolder(path)
+      await refetch()
+    }
+    setFolderSelectDialogOpen(false)
   }
   async function handleSync() {
     await indexing()
@@ -64,7 +74,7 @@ export default function Local() {
         <Col variant='caption' title='文件夹' more={
           <Button sx={{ ml: 'auto' }} size='small' onClick={handleAdd}><AddIcon fontSize='small'/>添加文件夹</Button>
         }>
-          <List sx={{ py: 0 }}>
+          <List>
             {
               foldersRes?.folders.map((folder) => {
                 return <FolderItem key={folder['folderId']} folder={folder} onRemove={handleRemove}></FolderItem>
@@ -75,6 +85,7 @@ export default function Local() {
         <Col variant='caption' title='刷新'>
           <Button variant='contained' size='small' onClick={handleSync}><SyncIcon fontSize='small'/>立即刷新</Button>
         </Col>
+        <FolderSelectDialog open={folderSelectDialogOpen} onClose={() => setFolderSelectDialogOpen(false)} onSelect={handleAddFolder} />
     </Box>
   </PageTransition>
 }

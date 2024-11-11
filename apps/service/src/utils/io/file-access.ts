@@ -8,7 +8,8 @@ import { Injectable } from '@nestjs/common'
 import { DateTime } from '../date-time'
 import { Desktop } from '../desktop'
 
-const ApplicationPaths = {
+export const ApplicationPaths = {
+  dbFolder: 'DB',
   cacheFolder: 'MusicCache',
   coverArtCacheFolder: 'CoverArt',
 }
@@ -109,7 +110,7 @@ export class FileAccess {
       const possibleDirectoryPath: string = this.combinePath([directoryPath, possibleDirectoryName])
 
       try {
-        if (fs.lstatSync(possibleDirectoryPath).isDirectory())
+        if (fs.lstatSync(possibleDirectoryPath).isDirectory() && !possibleDirectoryName.startsWith('.'))
           confirmedDirectoryPaths.push(possibleDirectoryPath)
       }
       catch (e) {

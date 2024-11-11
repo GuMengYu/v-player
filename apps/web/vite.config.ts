@@ -57,13 +57,13 @@ export default defineConfig(({ command, mode }) => {
       host: env.VITE_DEV_SERVER_HOST,
       port: +env.VITE_DEV_SERVER_PORT,
       proxy: {
-        '/api': {
-          target: `http://${env.VITE_API_SERVER_HOST}:3001`,
+        '/nem': {
+          target: `http://${env.VITE_API_SERVER_HOST}:12140`,
           changeOrigin: true,
-          rewrite: path => path.replace(/^\/api/, ''),
+          rewrite: path => path.replace(/^\/nem/, ''),
         },
         '/local': {
-          target: `http://${env.VITE_API_SERVER_HOST}:3000`,
+          target: `http://${env.VITE_API_SERVER_HOST}:12141`,
           changeOrigin: true,
           rewrite: path => path.replace(/^\/local/, ''),
         },
