@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { Folder } from './folder.entity'
-import { FileAccess } from 'src/utils/io/file-access'
+import { FileAccess } from '../utils/io/file-access'
 import { SubfolderModel } from './subfolder-model'
 import { FolderModel } from './folder-model'
 

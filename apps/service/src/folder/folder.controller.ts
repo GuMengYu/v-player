@@ -5,7 +5,7 @@ import * as os from 'node:os'
 import * as nodePath from 'node:path'
 import { FolderModel } from './folder-model'
 import { Folder } from './folder.entity'
-import { Desktop } from 'src/utils/desktop'
+import { Desktop } from '../utils/desktop'
 import { SubfolderModel } from './subfolder-model'
 
 @Controller('folder')

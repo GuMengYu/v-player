@@ -58,7 +58,7 @@ export class TrackController {
   }
 
   @Get('get-playlist-tracks')
-  async getPlaylistTracks(@Query('playlistId') playlistId: number) {
+  async getPlaylistTracks(@Query('id') playlistId: number) {
     const tracks = await this.trackService.getTracksForPlaylist(playlistId)
     return this.getTracksResponse(tracks)
   }

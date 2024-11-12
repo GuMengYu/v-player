@@ -43,13 +43,13 @@ export class AlbumArtworkCacheService {
     try {
       const albumArtworkCacheId: AlbumArtworkCacheId = this.albumArtworkCacheIdFactory.create()
       const cachedArtworkFilePath: string = this.fileAccess.coverArtFullPath(albumArtworkCacheId.id)
-      const resizedImageBuffer: Buffer = await this.imageProcessor.resizeImageAsync(
-        imageBuffer,
-        Constants.cachedCoverArtMaximumSize,
-        Constants.cachedCoverArtMaximumSize,
-        Constants.cachedCoverArtJpegQuality,
-      )
-      await this.imageProcessor.convertImageBufferToFileAsync(resizedImageBuffer, cachedArtworkFilePath)
+      // const resizedImageBuffer: Buffer = await this.imageProcessor.resizeImageAsync(
+      //   imageBuffer,
+      //   Constants.cachedCoverArtMaximumSize,
+      //   Constants.cachedCoverArtMaximumSize,
+      //   Constants.cachedCoverArtJpegQuality,
+      // )
+      await this.imageProcessor.convertImageBufferToFileAsync(imageBuffer, cachedArtworkFilePath)
 
       return albumArtworkCacheId
     }

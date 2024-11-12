@@ -20,6 +20,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@fastify/static": "^8.0.2",
     "@nestjs/common": "^10.0.0",
     "@nestjs/core": "^10.0.0",
     "@nestjs/platform-express": "^10.0.0",
@@ -35,7 +36,6 @@
     "node-taglib-sharp": "^5.2.3",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
-    "sharp": "^0.33.5",
     "sqlite3": "^5.1.7",
     "typeorm": "^0.3.20",
     "uuid": "^10.0.0"
